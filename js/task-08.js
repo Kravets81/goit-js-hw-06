@@ -5,25 +5,16 @@ formRef.addEventListener("submit", onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
 
-  const inputRef = document.querySelectorAll("input");
+  const {
+    elements: { email, password },
+  } = event.currentTarget;
 
-  inputRef.forEach((input) => {
-    if (input.value.trim() === "") {
-      alert("error");
-    }
-  });
+  if (email.value === "" || password.value === "") {
+    alert("error");
+  }
 
-  const formData = new FormData(event.currentTarget);
-  console.log(formData);
+  const userDetails = { email: email.value, Password: password.value };
 
-  const formValues = {};
-
-  formData.forEach((name, value) => {
-    formValues[name] = value;
-  });
-  console.log(formValues);
+  console.log(userDetails);
+  event.currentTarget.reset();
 }
-
-formRef.addEventListener("submit", (event) => {
-  event.target.reset();
-});
